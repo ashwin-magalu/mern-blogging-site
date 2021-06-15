@@ -21,6 +21,7 @@ import useStyles from "../AppStyles";
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
+
 const Home = () => {
   const classes = useStyles();
   const query = useQuery();
@@ -59,7 +60,7 @@ const Home = () => {
   return (
     <Grow in>
       <Container maxWidth="xl">
-        <Grid
+        <Grid  
           container
           justify="space-between"
           alignItems="stretch"

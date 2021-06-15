@@ -5,16 +5,20 @@ import PostMessage from "../models/postMessage.js";
 
 const router = express.Router();
 
+// Query --> /posts?page=1 --> page = 1
+// Params --> /posts/123 --> id = 123
+
 export const getPosts = async (req, res) => {
   const { page } = req.query;
 
   try {
-    const LIMIT = 8;
-    const startIndex = (Number(page) - 1) * LIMIT; // get the starting index of every page
+    const LIMIT = 8; // number of page per page
+    const startIndex = (Number(page) - 1) * LIMIT;
+    // getting the start index of every page's first post
 
-    const total = await PostMessage.countDocuments({});
+    const total = await PostMessage.countDocuments({}); // number of posts count
     const posts = await PostMessage.find()
-      .sort({ _id: -1 })
+      .sort({ _id: -1 }) // gives newest post first
       .limit(LIMIT)
       .skip(startIndex);
 
@@ -32,7 +36,7 @@ export const getPostsBySearch = async (req, res) => {
   const { searchQuery, tags } = req.query;
 
   try {
-    const title = new RegExp(searchQuery, "i");
+    const title = new RegExp(searchQuery, "i"); // i stands for ignore case, conversion to RegExp will help mongoDB to find data easily
 
     const posts = await PostMessage.find({
       $or: [{ title }, { tags: { $in: tags.split(",") } }],

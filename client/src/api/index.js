@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:8800" });
+const API = axios.create({
+  baseURL: "https://ashwin-memories-app.herokuapp.com",
+});
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
