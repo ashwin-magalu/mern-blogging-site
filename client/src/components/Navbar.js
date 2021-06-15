@@ -38,10 +38,10 @@ const Navbar = () => {
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
-      <Link to="/" className={classes.brandContainer}>
+      <Link to="/posts" className={classes.brandContainer}>
         <img
           component={Link}
-          to="/"
+          to="/posts"
           src={memoriesText}
           alt="icon"
           height="45px"
