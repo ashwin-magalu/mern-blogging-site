@@ -15,7 +15,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Icon from "./icon";
 import { signin, signup } from "../actions/auth";
 import { AUTH } from "../constants/actionTypes";
-import useStyles from "./AuthStyles.js";
+import useStyles from "./AuthStyles";
 import Input from "./Input";
 
 const initialState = {
@@ -59,21 +59,21 @@ const SignUp = () => {
     try {
       dispatch({ type: AUTH, data: { result, token } });
 
-      history.push("/");
+      history.push("/posts");
     } catch (error) {
       console.log(error);
     }
   };
 
   const googleError = () =>
-    alert("Google Sign In was unsuccessful. Try again later");
+    console.log("Google Sign In was unsuccessful. Try again later");
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
   return (
     <Container component="main" maxWidth="xs">
-      <Paper className={classes.paper} elevation={3}>
+      <Paper className={classes.paper} elevation={6}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
